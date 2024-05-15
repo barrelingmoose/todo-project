@@ -1,3 +1,4 @@
+#[derive(Debug, PartialEq)]
 pub enum Progress{
     Todo, 
     InProgress,
@@ -16,9 +17,9 @@ impl std::fmt::Display for Progress{
 
 #[test]
 fn test_enum(){
-    let todo = Todo; 
-    let in_progress = InProgress; 
-    let completed = Completed; 
+    let todo = Progress::Todo; 
+    let in_progress = Progress::InProgress; 
+    let completed = Progress::Completed; 
     assert_eq!("Todo", todo.to_string());
     assert_eq!("In Progress", in_progress.to_string());
     assert_eq!("Completed", completed.to_string());

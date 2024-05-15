@@ -1,14 +1,13 @@
 mod monitor;
 mod data; 
+mod operations; 
 
 pub use crate::monitor::Progress;
-pub use crate::data::TodoItem; 
+pub use crate::data::TodoItem;
 
 
 fn main() {
-    let item_string = String::from("Test");
-    let item_enum = monitor::Progress::Todo;
-    let new_item = TodoItem{item_description: item_string,
-                            item_progress: item_enum};
-    println!("{}",new_item);
+    let mut todo_list: Vec<TodoItem> = Vec::new(); 
+    operations::run(&mut todo_list); 
+    println!("{}",todo_list[0]);
 }
