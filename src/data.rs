@@ -7,7 +7,7 @@ pub struct TodoItem{
 
 impl std::fmt::Display for TodoItem{
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result{
-        write!(f, "Description: {}\nProgress: {}", self.item_description, self.item_progress)
+        write!(f, "Description | Progress\n{}\t    | {}", self.item_description, self.item_progress)
     }
 }
 

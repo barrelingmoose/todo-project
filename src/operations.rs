@@ -1,5 +1,6 @@
 pub use crate::data::TodoItem;
 pub use crate::monitor::Progress;
+use std::io::{self, Write}; 
 
 fn add_item(item_list: &mut Vec<TodoItem>, new_item: TodoItem){
     item_list.push(new_item); 
@@ -14,11 +15,38 @@ fn update_item(item_list: &mut Vec<TodoItem>, index: usize, update: Progress){
 }
 
 pub fn run(item_list: &mut Vec<TodoItem>){
-    let item_string = String::from("Test");
-    let item_enum = Progress::Todo;
-    let new_item = TodoItem{item_description: item_string,
-                            item_progress: item_enum};
-    add_item(item_list, new_item)
+    let mut user_input = String::new(); 
+    while user_input.trim() != "Exit"{
+        user_input.clear();
+        std::io::stdout().flush().unwrap();
+        io::stdin().read_line(&mut user_input).unwrap();
+        if user_input.trim() == "add"{
+            let item_string = String::from("Test");
+            let item_enum = Progress::Todo;
+            let new_item = TodoItem{item_description: item_string,
+                                    item_progress: item_enum};
+
+            add_item(item_list, new_item);
+            print!("{}\n",item_list[0]);
+            user_input.clear();
+        }
+        else if user_input.trim() == "update"{
+            let item_update = Progress::InProgress; 
+            update_item(item_list, 0, item_update);
+            print!("{}\n",item_list[0]);
+            user_input.clear();
+        }
+        else if user_input.trim() == "delete"{
+            delete_item(item_list, 0); 
+            user_input.clear();
+        }
+        else if user_input.trim() == "print"{
+            for el in & *item_list{
+                print!("{}\n", el);
+                user_input.clear();
+            }
+        }
+    }
 }
 
 #[test]
