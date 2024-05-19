@@ -1,8 +1,9 @@
-#[derive(Debug, PartialEq)]
+#[derive(Copy, Clone, Debug, PartialEq)]
 pub enum Progress{
     Todo, 
     InProgress,
-    Completed
+    Completed,
+    Invalid
 }
 
 impl std::fmt::Display for Progress{
@@ -11,6 +12,7 @@ impl std::fmt::Display for Progress{
         Self::Todo => write!(f, "Todo"),
         Self::InProgress => write!(f, "In Progress"),
         Self::Completed => write!(f, "Completed"),
+        Self::Invalid => write!(f, "Invalid")
         }
     }
 }  
