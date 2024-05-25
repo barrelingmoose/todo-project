@@ -1,4 +1,5 @@
-#[derive(Copy, Clone, Debug, PartialEq)]
+use serde_derive::{Deserialize,Serialize};
+#[derive(Copy, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub enum Progress{
     Todo, 
     InProgress,

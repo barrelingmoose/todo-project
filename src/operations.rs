@@ -1,7 +1,8 @@
-pub use crate::data::TodoItem;
-pub use crate::monitor::Progress;
 use std::io::{self, Write}; 
 
+pub use crate::data::TodoItem;
+pub use crate::monitor::Progress;
+pub use crate::json_helper::write_to_json; 
 fn delete_command(item_list: &mut Vec<TodoItem>, index: usize){
     item_list.remove(index); 
 }
@@ -94,4 +95,5 @@ pub fn run(item_list: &mut Vec<TodoItem>){
         io::stdin().read_line(&mut user_input).unwrap();
         process_user_command(item_list, &mut user_input);
     }
+    write_to_json(item_list); 
 }

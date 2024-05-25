@@ -1,6 +1,7 @@
+use serde_derive::{Deserialize, Serialize};
 pub use crate::monitor::Progress; 
 
-#[derive(Clone)]
+#[derive(Clone, Deserialize, Serialize)]
 pub struct TodoItem{
     pub item_description: String,
     pub item_progress: Progress,
