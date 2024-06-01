@@ -65,6 +65,7 @@ pub fn print_help(){
     println!("  [print] - prints out the list");
     println!("  [help] - prints out the command options");
     println!("  [clear] - clears command console");
+    println!("  [purge] - remove all completed items from the list");
     println!("  [exit] - exits the program");
 }
 
