@@ -24,7 +24,7 @@ pub use crate::data::TodoItem;
         -- The write_to_json function us using two pops to remove the last comma and
         last bracket. This should be changed in the future.
 */
-pub fn write_to_json(item_list: &mut Vec<TodoItem>)->Result<(), std::io::Error>{
+pub fn write_to_json(json_output: &str, item_list: &mut Vec<TodoItem>)->Result<(), std::io::Error>{
     let mut i: String = "[\n".to_owned();
     for el in item_list{
         let j = serde_json::to_string_pretty(el)?;
@@ -35,14 +35,14 @@ pub fn write_to_json(item_list: &mut Vec<TodoItem>)->Result<(), std::io::Error>{
     i.pop();
     i.pop(); 
     i.push_str("\n]");
-    let output_path = "./test.json";
-    std::fs::write(output_path, i.clone());
+    // TODO: Come back here for error handling 
+    let _ = std::fs::write(json_output, i.clone());
     Ok(())
 }
 
-pub fn read_from_json()->Result<Vec<TodoItem>, std::io::Error>{
-    let input_path = "./test.json";
-    let contents = std::fs::read_to_string(input_path)?;
+pub fn read_from_json(json_path: &str)->Result<Vec<TodoItem>, std::io::Error>{
+    
+    let contents = std::fs::read_to_string(json_path)?;
     let item_list: Vec<TodoItem> = serde_json::from_str(&contents)?;
     Ok(item_list)
 }

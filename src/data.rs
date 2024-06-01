@@ -9,7 +9,15 @@ pub struct TodoItem{
 
 impl std::fmt::Display for TodoItem{
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result{
-        write!(f, "{}\t    | {}", self.item_description, self.item_progress)
+        if self.item_progress == Progress::InProgress{
+            write!(f, "{} | {}", self.item_progress, self.item_description)
+        }
+        else if self.item_progress == Progress::Completed{
+            write!(f, "{}   | {}", self.item_progress, self.item_description)
+        }
+        else{
+            write!(f, "{}\t       | {}", self.item_progress, self.item_description)
+        }
     }
 }
 
